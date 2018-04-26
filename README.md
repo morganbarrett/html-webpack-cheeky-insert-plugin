@@ -10,7 +10,7 @@ $ yarn add --dev html-webpack-cheeky-insert-plugin
 ```
 
 ## Usage
-###webkit.config.js
+### webkit.config.js
 ```javascript
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlWebpackInsertPlugin = require("html-webpack-cheeky-insert-plugin");
