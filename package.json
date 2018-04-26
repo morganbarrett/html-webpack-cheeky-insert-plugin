@@ -1,0 +1,21 @@
+{
+	"name": "html-webpack-cheeky-insert-plugin",
+	"version": "0.0.1",
+	"description": "Adds ability to insert HTML with the HTML Webpack Plugin",
+	"main": "index.js",
+	"files": ["index.js"],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/morganbarrett/html-webpack-cheeky-insert-plugin.git"
+	},
+	"keywords": [
+		"html", "webpack", "plugin", "html-webpack-plugin", "cheeky", "insert"
+	],
+	"author": "Morgan Barrett <morganbarrett@icloud.com> (https://github.com/morganbarrett)",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/morganbarrett/html-webpack-cheeky-insert-plugin/issues"
+	},
+	"homepage": "https://github.com/morganbarrett/html-webpack-cheeky-insert-plugin",
+	"dependencies": {}
+}
