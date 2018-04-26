@@ -24,7 +24,7 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin(),
 		new HtmlWebpackInsertPlugin({
-			tag: "body" //default tag to insert html into
+			tag: "body"	//default tag to insert html into
 			html: "" 	//default html to be inserted
 		})
 	]
