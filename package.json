@@ -1,6 +1,6 @@
 {
 	"name": "html-webpack-cheeky-insert-plugin",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Adds ability to insert HTML with the HTML Webpack Plugin",
 	"main": "index.js",
 	"files": ["index.js"],
