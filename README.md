@@ -24,8 +24,14 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin(),
 		new HtmlWebpackInsertPlugin({
-			tag: "body"	//default tag to insert html into
-			html: "" 	//default html to be inserted
+			//whether the html should be inserted at the top of the document
+			top: false,
+
+			//tag to insert html into
+			tag: "body",
+
+			//html to be inserted, or an array of html strings
+			html: ""
 		})
 	]
 }
@@ -89,6 +95,48 @@ module.exports = {
 		<meta name='keywords' content='A,B,C'>
 		<meta name='author' content='Morgan Barrett'>
 		<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+	</head>
+	<body>
+		<script type="text/javascript" src="bundle.js"></script>
+	</body>
+</html>
+```
+
+## Example with top
+### webkit.config.js
+```javascript
+...
+	plugins: [
+		new HtmlWebpackPlugin(
+			filename: "cheekyServer.php",
+		),
+		new HtmlWebpackInsertPlugin({
+			top: true,
+			html: [
+				"<?php",
+					"if(rand(0, 5) == 2){",
+						"echo '<h1>Random 404</h1>';",
+						"exit;",
+					"}",
+				"?>"
+			]
+		})
+	]
+...
+```
+### cheekyServer.php
+```php
+<?php
+	if(rand(0, 5) == 2){
+		echo '<h1>Random 404</h1>';
+		exit;
+	}
+?>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
 	</head>
 	<body>
 		<script type="text/javascript" src="bundle.js"></script>

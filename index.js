@@ -1,4 +1,5 @@
 function HtmlWebpackInsertPlugin(opt){
+	this.top = !!opt.top;
 	this.tag = opt.tag ? opt.tag : "body";
 	this.html = opt.html ? opt.html : "";
 
@@ -17,6 +18,10 @@ HtmlWebpackInsertPlugin.prototype.apply = function(compiler){
 				var tag = "<" + this.tag + ">",
 					s = data.html,
 					i = s.indexOf(tag) + tag.length;
+
+				if(this.top){
+					i = 0;
+				}
 
 				data.html = s.substr(0, i) + this.html + s.substr(i);
 			}  
