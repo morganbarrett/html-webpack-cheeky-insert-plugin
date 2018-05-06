@@ -1,6 +1,10 @@
 function HtmlWebpackInsertPlugin(opt){
 	this.tag = opt.tag ? opt.tag : "body";
 	this.html = opt.html ? opt.html : "";
+
+	if(this.html instanceof Array){
+		this.html = this.html.join("\n");
+	}
 }
 
 HtmlWebpackInsertPlugin.prototype.apply = function(compiler){

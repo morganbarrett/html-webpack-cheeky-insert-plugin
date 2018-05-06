@@ -60,3 +60,38 @@ module.exports = {
 	</body>
 </html>
 ```
+
+## Example with array
+### webkit.config.js
+```javascript
+...
+	plugins: [
+		new HtmlWebpackPlugin(),
+		new HtmlWebpackInsertPlugin({
+			tag: "head",
+			html: [
+				"<meta name='description' content='Cheeky cheeky!'>",
+				"<meta name='keywords' content='A,B,C'>",
+				"<meta name='author' content='Morgan Barrett'>",
+				"<meta name='viewport' content='width=device-width, initial-scale=1.0'>"
+			]
+		})
+	]
+...
+```
+### index.html
+```html
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name='description' content='Cheeky cheeky!'>
+		<meta name='keywords' content='A,B,C'>
+		<meta name='author' content='Morgan Barrett'>
+		<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+	</head>
+	<body>
+		<script type="text/javascript" src="bundle.js"></script>
+	</body>
+</html>
+```
