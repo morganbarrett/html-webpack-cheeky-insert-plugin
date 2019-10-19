@@ -108,7 +108,7 @@ module.exports = {
 ...
 	plugins: [
 		new HtmlWebpackPlugin(
-			filename: "cheekyServer.php",
+			filename: "cheekyServer.php"
 		),
 		new HtmlWebpackInsertPlugin({
 			top: true,

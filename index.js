@@ -1,20 +1,31 @@
-function HtmlWebpackInsertPlugin(opt){
-	this.top = !!opt.top;
-	this.tag = opt.tag ? opt.tag : "body";
-	this.html = opt.html ? opt.html : "";
+const assert = require('assert');
 
-	if(this.html instanceof Array){
-		this.html = this.html.join("\n");
+class HtmlWebpackCheekyInsertPlugin {
+	constructor(opt){
+		this.top = !!opt.top;
+		this.tag = opt.tag ? opt.tag : "body";
+		this.html = opt.html ? opt.html : "";
+
+		if(this.html instanceof Array){
+			this.html = this.html.join("\n");
+		}
 	}
-}
 
-HtmlWebpackInsertPlugin.prototype.apply = function(compiler){
-	compiler.plugin("compilation", (compilation) => {
-		console.log('The compiler is starting a new compilation...');
+	apply(compiler){
+		compiler.hooks.compilation.tap(this.constructor.name, compilation => {
+	        let hook = compilation.hooks.htmlWebpackPluginAfterHtmlProcessing;
+	        
+	        if(!hook){
+				const [HtmlWebpackPlugin] = compiler.options.plugins.filter(
+					plugin => plugin.constructor.name === 'HtmlWebpackPlugin'
+				);
 
-		compilation.plugin(
-			"html-webpack-plugin-after-html-processing",
-			(data) => {
+				assert(HtmlWebpackPlugin, 'Unable to find HtmlWebpackPlugin.');
+				
+				hook = HtmlWebpackPlugin.constructor.getHooks(compilation).beforeEmit;
+			}
+
+			hook.tapAsync(this.constructor.name, (data, callback) => {
 				var tag = "<" + this.tag + ">",
 					s = data.html,
 					i = s.indexOf(tag) + tag.length;
@@ -24,9 +35,11 @@ HtmlWebpackInsertPlugin.prototype.apply = function(compiler){
 				}
 
 				data.html = s.substr(0, i) + this.html + s.substr(i);
-			}  
-		);
-	});
-};
 
-module.exports = HtmlWebpackInsertPlugin;
+				callback(null, data);
+			});
+		});
+	}
+}
+
+module.exports = HtmlWebpackCheekyInsertPlugin;
